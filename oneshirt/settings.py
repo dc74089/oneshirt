@@ -15,22 +15,33 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+is_prod = os.getenv('ONESHIRT_PROD')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@0r_6q=(vqxsc^=@0+e%athr60zb9#^#wa3knh0*5vax%v()zx'
+if is_prod:
+    SECRET_KEY = os.getenv("ONESHIRT_SECRET")
+else:
+    SECRET_KEY = '@0r_6q=(vqxsc^=@0+e%athr60zb9#^#wa3knh0*5vax%v()zx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not is_prod
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['1shirt.trade', 'www.1shirt.trade']
+
+if not is_prod:
+    ALLOWED_HOSTS.append('dev.1shirt.trade')
+    ALLOWED_HOSTS.append('10.19.2.2')
+    ALLOWED_HOSTS.append('127.0.0.1')
+    ALLOWED_HOSTS.append('localhost')
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'trade',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,10 +86,16 @@ WSGI_APPLICATION = 'oneshirt.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'oneshirt',
+        'USER': 'oneshirt',
+        'PASSWORD': os.getenv("ONESHIRT_DB_PASS"),
+        'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+        'OPTIONS': {'init_command': 'SET storage_engine=MyISAM', },
     }
 }
+
 
 
 # Password validation
@@ -114,7 +131,35 @@ USE_L10N = True
 USE_TZ = True
 
 
+if is_prod:
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_HTTPONLY = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+
+EMAIL_HOST = "smtp.mailgun.org"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+if is_prod:
+    ADMINS = [("Dominic", os.getenv("ADMIN_EMAIL"))]
+
+if is_prod:
+    EMAIL_HOST_USER = "noreply@mail.oneshirt.trade"
+    EMAIL_HOST_PASSWORD = os.getenv("ONESHIRT_SMTP_PASS")
+else:
+    EMAIL_HOST_USER = "mail-dev@mail.oneshirt.trade"
+    EMAIL_HOST_PASSWORD = os.getenv("ONESHIRT_SMTP_DEV_PASS")
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/oneshirt/static/'
+if is_prod:
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = '/home/pedia/media/'
+else:
+    ENV_PATH = os.path.abspath(os.path.dirname(__file__))
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(ENV_PATH, 'media/')

@@ -1,0 +1,15 @@
+{% extends 'trade/base.html' %}
+
+{% block content %}
+  <div class="card-columns">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Shirt Trading, Simplified.</h4>
+        <p class="card-text">1Shirt simplifies the hassle and chaos of the tradition of trading shirts and other team apparel at <i>FIRST</i> Robotics Competition events. No more excel sheets, searching through massive group chats or forum posts, texting strange numbers, or rushing to the popular teams in the pits on Thursday afternoon.</p>
+        <p class="card-text">Just register an account, list what you're willing to trade, take a look at what others have posted, and make a trade offer. Head over to our search page to filter by event or find a particular team. It's shirt trading, simplified.</p>
+        <a href="{% url 'trade:login' %}" class="btn btn-primary">Register</a>
+        <a href="{% url 'trade:search' %}" class="btn">Search</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

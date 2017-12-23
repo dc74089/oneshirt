@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{% block title %}1Shirt{% endblock %}</title>
   {% load static %}
+
+  <title>{% block title %}1 Shirt{% endblock %}</title>
+
+  <link rel="icon" href="{% static 'trade/mono_badge_128.png' %}" sizes="128x128">
+  <link rel="icon" href="{% static 'trade/mono_badge_512.png' %}" sizes="512x512">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
   <!-- Import Bootstrap -->
   <link rel="stylesheet" href="{% static 'trade/bootstrap.css' %}">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -15,13 +22,15 @@
   <!-- End required Bootstrap meta tags -->
 </head>
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="{% url 'trade:index' %}">Logo</a>
+  <nav class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navItems" aria-controls="navItems" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navItems">
+      <a class="navbar-brand" href="{% url 'trade:index' %}">
+        <img src="{% static 'trade/logo_numbermark.svg' %}" height=40>
+      </a>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="{% url 'trade:index' %}">Home</a>
@@ -30,7 +39,7 @@
           <a class="nav-link" href="{% url 'trade:search' %}">Search</a>
         </li>
       </ul>
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           {% if not request.user.is_autheticated %}
             <a class="nav-link" href="{% url 'trade:login' %}">Log In</a>

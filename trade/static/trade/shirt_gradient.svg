@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="2000"
+   height="2000"
+   viewBox="0 0 529.16665 529.16668"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="shirt_gradient.svg"
+   inkscape:export-filename="C:\Users\domin\Google Drive\Robotics\Bacon\App\1Shirt\mono_badge_256.png"
+   inkscape:export-xdpi="12.288"
+   inkscape:export-ydpi="12.288">
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient985"
+       id="linearGradient886"
+       x1="95.266487"
+       y1="32.416656"
+       x2="433.90018"
+       y2="32.416656"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.5388774,0,0,1.6470034,-142.57801,-20.877785)" />
+    <linearGradient
+       id="linearGradient985"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#2145ff;stop-opacity:1"
+         offset="0"
+         id="stop983" />
+      <stop
+         style="stop-color:#25fffa;stop-opacity:1"
+         offset="1"
+         id="stop981" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="1136.2973"
+     inkscape:cy="897.71314"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="2736"
+     inkscape:window-height="1714"
+     inkscape:window-x="-12"
+     inkscape:window-y="-12"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,232.16668)">
+    <path
+       style="fill:#000000;stroke-width:0.26458335"
+       d=""
+       id="path1037"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:url(#linearGradient886);fill-opacity:1;stroke:#e8e8e8;stroke-width:1.85208333;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 111.49283,136.46674 c 0,-82.687289 -0.0857,-150.340528 -0.19017,-150.340528 -0.10469,0 -14.332205,1.970336 -31.616945,4.3785321 -17.28477,2.408192 -31.56128,4.222085 -31.72563,4.030868 -0.16432,-0.191214 -1.89431,-4.367635 -3.84438,-9.2809371 -3.08848,-7.781544 -19.32305,-48.501252 -34.2262303,-85.846625 -2.63024,-6.59101 -5.02564,-12.6013 -5.32314,-13.35619 l -0.54088,-1.37252 48.5423703,-27.24149 c 67.370655,-37.80775 103.698115,-58.02852 124.780315,-69.45586 l 18.01387,-9.76416 1.52986,1.31157 c 5.54853,4.75685 19.08445,8.20962 40.61739,10.36078 11.09706,1.10857 43.05538,1.10857 54.15245,0 21.5329,-2.15116 35.0688,-5.60393 40.61735,-10.36078 l 1.52988,-1.31157 18.01386,9.76371 c 20.82472,11.28728 56.34239,31.06099 124.77814,69.46771 l 48.54024,27.24115 -0.53877,1.36699 c -0.29628,0.75185 -2.6907,6.75965 -5.32093,13.35066 -14.90321,37.345373 -31.13772,78.065081 -34.22621,85.846625 -1.95008,4.9133021 -3.68011,9.0897231 -3.84444,9.2809371 -0.16431,0.191217 -14.4408,-1.622676 -31.72558,-4.030868 -17.28473,-2.4081961 -31.51238,-4.3785321 -31.61697,-4.3785321 -0.10451,0 -0.19013,67.653239 -0.19013,150.340528 V 286.80723 H 264.58547 111.49283 Z"
+       id="path828"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ssscccccsccccccccscccccssscccs" />
+  </g>
+</svg>

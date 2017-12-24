@@ -9,6 +9,8 @@ urlpatterns = [
 
     # Auth
     url(r'^login/$', auth.login, name='login'),
+    url(r'^logout/$', auth.logout, name='logout'),
+    url(r'^register/$', auth.register, name='register'),
 
     #Search
     url(r'^search/$', search.search, name='search'),

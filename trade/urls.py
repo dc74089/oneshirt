@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import index, auth, search, listing
+from .views import index, auth, search, item
 
 app_name = 'trade'
 urlpatterns = [
@@ -12,8 +12,8 @@ urlpatterns = [
     url(r'^logout/$', auth.logout, name='logout'),
     url(r'^register/$', auth.register, name='register'),
 
-    #Listings
-    url(r'^listing/new/$', listing.new, name='listing_new'),
+    #Items
+    url(r'^item/add/$', item.new, name='item_add'),
 
     #Search
     url(r'^search/$', search.search, name='search'),

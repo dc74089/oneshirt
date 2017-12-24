@@ -8,6 +8,7 @@
       <div class="card-body">
         <h4 class="card-title">Register</h4>
         <form action="{% url 'trade:register' %}" method="post">
+          {% csrf_token %}
           <div class="form-group">
             <label for="username">Username</label>
             <small>(Displayed Publicly)</small>
@@ -29,7 +30,8 @@
           </div>
           <div class="form-group">
             <label for="team_no">FRC Team Number</label>
-            <input type="number" class="form-control" name="team_no" id="team_no" placeholder="1234">
+            <small>If none, type 0000</small>
+            <input type="number" class="form-control" name="team" id="team_no" placeholder="1234">
           </div>
           <button type="submit" disabled class="btn btn-primary">Register</button>
         </form>

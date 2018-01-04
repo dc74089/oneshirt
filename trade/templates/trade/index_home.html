@@ -10,7 +10,7 @@
         <p class="card-text">Just register an account, list what you're willing to trade, take a look at what others have posted, and make a trade offer. Head over to our search page to filter by event or find a particular team. It's shirt trading, simplified.</p>
         <a href="{% url 'trade:register' %}" class="btn btn-primary">Register</a>
         {% else %}
-        <a href="{% url 'trade:item_add' %}" class="btn btn-primary">List Items</a>
+        <a href="{% url 'trade:item_add' %}" class="btn btn-primary">Add an Item</a>
         {% endif %}
         <a href="{% url 'trade:search' %}" class="btn ">Search</a>
       </div>

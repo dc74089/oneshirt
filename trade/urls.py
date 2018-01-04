@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^register/$', auth.register, name='register'),
 
     #Items
+    url(r'^item/<uuid:id>/$', item.view, name='item_view'),
     url(r'^item/add/$', item.new, name='item_add'),
 
     #Search

@@ -6,13 +6,11 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">List a New Item</h4>
-        <form action="{% url 'trade:item_add' %}" method="post">
+        <form action="{% url 'trade:item_add' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="form-group">
-            <label class="custom-file" id="pic">
-              <input type="file" class="custom-file-input">
-              <span class="custom-file-control"></span>
-            </label>
+            <label for="photo">Select a Picture:</label></br>
+            <input type="file" class="file-input" name="photo" id="photo" accept="image/*">
           </div>
           <div class="form-group">
             <label for="team">Team:</label>
@@ -32,7 +30,7 @@
             <small>If you selected 'other' above, say more here.</small></br>
             <textarea class="w-100 form-control" name="description" id="description"></textarea>
           </div>
-          <button type="submit" disabled class="btn btn-primary">Go</button>
+          <button type="submit" class="btn btn-primary">Go</button>
         </form>
       </div>
     </div>

@@ -1,7 +1,7 @@
-from django.db import models
-from django.contrib.auth.models import User
-
 import uuid
+
+from django.contrib.auth.models import User
+from django.db import models
 
 
 class OneshirtUser(models.Model):
@@ -16,8 +16,9 @@ class OneshirtUser(models.Model):
 
 class Item(models.Model):
     item_types = (
-    ('ts', "T-Shirt"),
-    ('hat', "Hat"),
+        ('ts', "T-Shirt"),
+        ('hat', "Hat"),
+        ('etc', "Doodad"),
     )
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

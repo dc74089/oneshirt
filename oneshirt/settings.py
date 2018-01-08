@@ -92,7 +92,7 @@ DATABASES = {
         'PASSWORD': os.getenv("ONESHIRT_DB_PASS"),
         'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
         'PORT': '3306',
-        'OPTIONS': {'init_command': 'SET storage_engine=MyISAM', },
+        'OPTIONS': {'init_command': 'SET default_storage_engine=MyISAM', },
     }
 }
 

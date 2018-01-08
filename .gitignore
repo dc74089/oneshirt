@@ -1,7 +1,7 @@
 *.pyc
 **/__pycache__/**
 run
-
 .sass-cache
-
 oneshirt/media
+.idea/
+env/

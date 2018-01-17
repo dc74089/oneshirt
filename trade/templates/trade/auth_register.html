@@ -2,41 +2,41 @@
 {% load static %}
 
 {% block content %}
-<div class="row">
-  <div class="col-sm-6 col-md-4 ml-auto mr-auto">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Register</h4>
-        <form action="{% url 'trade:register' %}" method="post">
-          {% csrf_token %}
-          <div class="form-group">
-            <label for="username">Username:</label>
-            <small>(Displayed Publicly)</small>
-            <input type="text" class="form-control" name="username" id="username" placeholder="Username">
-          </div>
-          <div class="form-group">
-            <label for="fname">Your Real First Name:</label>
-            <small>(Displayed Publicly)</small>
-            <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name">
-          </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <small>(Kept Private)</small>
-            <input type="email" class="form-control" name="email" id="email" placeholder="name@domain.tld">
-          </div>
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="*******">
-          </div>
-          <div class="form-group">
-            <label for="team_no">FRC Team Number:</label>
-            <small>If none, type 0000</small>
-            <input type="number" class="form-control" name="team" id="team_no" placeholder="1234">
-          </div>
-          <button type="submit" disabled class="btn btn-primary">Register</button>
-        </form>
+  <div class="row">
+    <div class="col-sm-6 col-md-4 ml-auto mr-auto">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Register</h4>
+          <form action="{% url 'trade:register' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <small>(Displayed Publicly)</small>
+              <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <label for="fname">Your Real First Name:</label>
+              <small>(Displayed Publicly)</small>
+              <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <small>(Kept Private)</small>
+              <input type="email" class="form-control" name="email" id="email" placeholder="name@domain.tld">
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" name="password" id="password" placeholder="*******">
+            </div>
+            <div class="form-group">
+              <label for="team_no">FRC Team Number:</label>
+              <small>If none, type 0000</small>
+              <input type="number" class="form-control" name="team" id="team_no" placeholder="1234">
+            </div>
+            <button type="submit" disabled class="btn btn-primary">Register</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 {% endblock %}

@@ -3,12 +3,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from ..models import Item, OneshirtUser
 
+
 def view(request, id):
     ctx = {}
     ctx['item'] = get_object_or_404(Item, id=id)
 
-
     return render(request, 'trade/item_view.html', ctx)
+
 
 def new(request):
     if request.method == 'GET':

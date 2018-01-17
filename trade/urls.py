@@ -12,10 +12,10 @@ urlpatterns = [
     path(r'logout/', auth.logout, name='logout'),
     path(r'register/', auth.register, name='register'),
 
-    #Items
+    # Items
     path(r'item/<int:id>/', item.view, name='item_view'),
     path(r'item/add/', item.new, name='item_add'),
 
-    #Search
+    # Search
     path(r'search/', search.search, name='search'),
 ]

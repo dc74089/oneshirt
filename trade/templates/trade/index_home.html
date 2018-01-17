@@ -5,12 +5,17 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Shirt Trading. Simplified.</h4>
-        <p class="card-text">1 Shirt alleviates the hassle and chaos of the traditional trading of shirts and other team apparel at <i>FIRST</i> Robotics Competition events. No more excel sheets, searching through massive group chats or forum posts, texting strange numbers, or rushing to your favorite teams as soon as competition begins.</p>
+        <p class="card-text">1 Shirt alleviates the hassle and chaos of the traditional trading of shirts and other team
+          apparel at <i>FIRST</i> Robotics Competition events. No more excel sheets, searching through massive group
+          chats or forum posts, texting strange numbers, or rushing to your favorite teams as soon as competition
+          begins.</p>
         {% if not request.user.is_authenticated %}
-        <p class="card-text">Just register an account, list what you're willing to trade, take a look at what others have posted, and make a trade offer. Head over to our search page to filter by event or find a particular team. It's shirt trading, simplified.</p>
-        <a href="{% url 'trade:register' %}" class="btn btn-primary">Register</a>
+          <p class="card-text">Just register an account, list what you're willing to trade, take a look at what others
+            have posted, and make a trade offer. Head over to our search page to filter by event or find a particular
+            team. It's shirt trading, simplified.</p>
+          <a href="{% url 'trade:register' %}" class="btn btn-primary">Register</a>
         {% else %}
-        <a href="{% url 'trade:item_add' %}" class="btn btn-primary">Add an Item</a>
+          <a href="{% url 'trade:item_add' %}" class="btn btn-primary">Add an Item</a>
         {% endif %}
         <a href="{% url 'trade:search' %}" class="btn ">Search</a>
       </div>

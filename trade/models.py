@@ -1,9 +1,7 @@
-import uuid
+from random import randint
 
 from django.contrib.auth.models import User
 from django.db import models
-
-from random import randint
 
 
 class OneshirtUser(models.Model):
@@ -42,9 +40,9 @@ class Item(models.Model):
 
 class Trade(models.Model):
     statuses = (
-    ('a', 'Accepted'),
-    ('d', 'Denied'),
-    ('p', 'Pending')
+        ('a', 'Accepted'),
+        ('d', 'Denied'),
+        ('p', 'Pending')
     )
     give = models.ManyToManyField(Item, related_name="trade_item_given")
     take = models.ManyToManyField(Item, related_name="trade_item_gotten")

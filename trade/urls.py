@@ -1,21 +1,21 @@
-from django.conf.urls import url
+from django.urls import path
 
 from .views import index, auth, search, item
 
 app_name = 'trade'
 urlpatterns = [
     # Index
-    url(r'^$', index.index, name='index'),
+    path(r'', index.index, name='index'),
 
     # Auth
-    url(r'^login/$', auth.login, name='login'),
-    url(r'^logout/$', auth.logout, name='logout'),
-    url(r'^register/$', auth.register, name='register'),
+    path(r'login/', auth.login, name='login'),
+    path(r'logout/', auth.logout, name='logout'),
+    path(r'register/', auth.register, name='register'),
 
     #Items
-    url(r'^item/<uuid:id>/$', item.view, name='item_view'),
-    url(r'^item/add/$', item.new, name='item_add'),
+    path(r'item/<int:id>/', item.view, name='item_view'),
+    path(r'item/add/', item.new, name='item_add'),
 
     #Search
-    url(r'^search/$', search.search, name='search'),
+    path(r'search/', search.search, name='search'),
 ]

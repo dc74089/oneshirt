@@ -3,6 +3,8 @@ import uuid
 from django.contrib.auth.models import User
 from django.db import models
 
+from random import randint
+
 
 class OneshirtUser(models.Model):
     django_user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -21,7 +23,14 @@ class Item(models.Model):
         ('etc', "Doodad"),
     )
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    def generate_id():  # Generate an ID for an item
+        id = randint(100, 1000000)
+        while len(Item.objects.filter(id=id)) != 0:
+            id = randint(100, 1000000)
+        return id
+
+    #  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.PositiveIntegerField(primary_key=True, default=generate_id, editable=False)
     owner = models.ForeignKey(OneshirtUser, on_delete=models.CASCADE)
     team = models.IntegerField()
     classification = models.CharField(max_length=10, choices=item_types)

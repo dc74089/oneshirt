@@ -27,4 +27,4 @@ def new(request):
         i.photo = request.FILES['photo']
         i.save()
 
-        return redirect('trade:item_view', uuid=i.id)
+        return redirect('trade:item_view', id=i.id)

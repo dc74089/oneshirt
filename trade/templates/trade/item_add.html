@@ -1,39 +1,45 @@
 {% extends "trade/base.html" %}
 
 {% block content %}
-<div class="row">
-  <div class="col-sm-6 col-md-4 ml-auto mr-auto">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">List a New Item</h4>
-        <form action="{% url 'trade:item_add' %}" method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          <div class="form-group">
-            <label for="photo">Select a Picture:</label></br>
-            <input type="file" class="file-input" name="photo" id="photo" accept="image/*">
-          </div>
-          <div class="form-group">
-            <label for="team">Team:</label>
-            <small>Or 0000 if not applicable.</small>
-            <input type="number" class="form-control" name="team" id="team" placeholder="1234">
-          </div>
-          <div class="form-group">
-            <label for="type">Item Type:</label></br>
-            <select class="custom-select w-100" name="type" id="type">
-              {% for item in types %}
-                <option value="{{item.0}}">{{item.1}}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="description">Description</label>
-            <small>If you selected 'other' above, say more here.</small></br>
-            <textarea class="w-100 form-control" name="description" id="description"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Go</button>
-        </form>
+  <div class="row">
+    <div class="col-sm-6 col-md-4 ml-auto mr-auto">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">List a New Item</h4>
+          <form action="{% url 'trade:item_add' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="photo">Select a Picture:</label></br>
+              <input type="file" class="file-input" name="photo" id="photo" accept="image/*">
+            </div>
+            <div class="form-group">
+              <label for="team">Team:</label>
+              <small>Or 0000 if not applicable.</small>
+              <input type="number" class="form-control" name="team" id="team" placeholder="1234">
+            </div>
+            <div class="form-group">
+              <label for="year">Year:</label>
+              <small>Or blank if not applicable.</small>
+              <input type="number" class="form-control" name="year" id="year" placeholder="1234">
+            </div>
+            <div class="form-group">
+              <label for="type">Item Type:</label></br>
+              <select class="custom-select w-100" name="type" id="type">
+                {% for item in types %}
+                  <option value="{{ item.0 }}">{{ item.1 }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <small>If you selected 'other' above, say more here.</small>
+              </br>
+              <textarea class="w-100 form-control" name="description" id="description"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Go</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 {% endblock %}

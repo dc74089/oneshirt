@@ -33,6 +33,7 @@ class Item(models.Model):
     id = models.PositiveIntegerField(primary_key=True, default=generate_id, editable=False)
     owner = models.ForeignKey(OneshirtUser, on_delete=models.CASCADE)
     team = models.IntegerField()
+    year = models.IntegerField(null=True, blank=True)
     classification = models.CharField(max_length=10, choices=item_types)
     description = models.TextField()
     available = models.BooleanField(default=True)

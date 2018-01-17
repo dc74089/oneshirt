@@ -4,7 +4,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from ..models import Item, OneshirtUser
 
 def view(request, id):
-    pass
+    ctx = {}
+    ctx['item'] = get_object_or_404(Item, id=id)
+
+
+    return render(request, 'trade/item_view.html', ctx)
 
 def new(request):
     if request.method == 'GET':
@@ -22,6 +26,7 @@ def new(request):
         i = Item()
         i.owner = osu
         i.team = data['team']
+        i.year = data.get('year')
         i.classification = data['type']
         i.description = data.get('description')
         i.photo = request.FILES['photo']

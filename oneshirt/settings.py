@@ -158,7 +158,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/home/oneshirt/static/'
 if is_prod:
     MEDIA_URL = '/media/'
-    MEDIA_ROOT = '/home/pedia/media/'
+    MEDIA_ROOT = '/home/oneshirt/media/'
 else:
     ENV_PATH = os.path.abspath(os.path.dirname(__file__))
     MEDIA_URL = '/media/'

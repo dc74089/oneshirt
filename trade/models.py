@@ -21,13 +21,13 @@ class Item(models.Model):
         ('etc', "Doodad"),
     )
 
+    @staticmethod
     def generate_id():  # Generate an ID for an item
         id = randint(100, 1000000)
         while len(Item.objects.filter(id=id)) != 0:
             id = randint(100, 1000000)
         return id
 
-    #  id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     id = models.PositiveIntegerField(primary_key=True, default=generate_id, editable=False)
     owner = models.ForeignKey(OneshirtUser, on_delete=models.CASCADE)
     team = models.IntegerField()
@@ -45,7 +45,8 @@ class Trade(models.Model):
     statuses = (
         ('a', 'Accepted'),
         ('d', 'Denied'),
-        ('p', 'Pending')
+        ('p', 'Pending'),
+        ('c', 'Cancelled'),
     )
     requester = models.ForeignKey(OneshirtUser, null=False, blank=False, on_delete=models.CASCADE,
                                   related_name="trade_user_requester")

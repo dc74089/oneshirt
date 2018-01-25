@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import index, auth, search, item
+from .views import index, auth, search, item, trade
 
 app_name = 'trade'
 urlpatterns = [
@@ -15,6 +15,9 @@ urlpatterns = [
     # Items
     path(r'item/<int:id>/', item.view, name='item_view'),
     path(r'item/add/', item.new, name='item_add'),
+
+    # Trading
+    path(r'trade/make', trade.new_trade, name='trade_new'),
 
     # Search
     path(r'search/', search.search, name='search'),

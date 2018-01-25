@@ -1,16 +1,53 @@
 {% extends 'trade/base.html' %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-sm-6 col-md-4 ml-auto mr-auto">
+  <div class="row justify-content-center">
+    <div class="col-sm-6 col-md-4">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">{% if item.year %}{{ item.year }}{% endif %}
-            {{ item.team }} {{ item.get_classification_display }}</h4>
           <img style="width: 100%; clear:both;" src="{{ item.photo.url }}">
-          <p class="text-center" style="margin-top: 2rem;">Listed by {{ item.owner }}</p>
+          <br><br>
+          <h4 class="text-center">{% if item.year %}{{ item.year }}{% endif %}
+            {{ item.team }} {{ item.get_classification_display }}</h4>
+          <p class="text-center">Listed by {{ item.owner }}</p>
         </div>
       </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      {% if request.user is item.owner %}
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">I Want It!</h4>
+            {% if user.is_authenticated %}
+              <h6>Set up a trade with {{ item.owner }}.</h6>
+              <br>
+              <form action="{% url 'trade:trade_new' %}" method="post">
+                {% csrf_token %}
+                <input type="number" readonly name="take" class="d-none" value="{{ item.id }}">
+
+                <div class="form-group">
+                  <label for="give">What do you want to offer?</label>
+                  <select class="custom-select" name="give" style="width: 100%;">
+                    {% for item in items %}
+                      <option value="{{ item.id }}">My {{ item }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </form>
+            {% else %}
+              <p>To set up a trade, you need to be logged in! Log in or register using one of the buttons in the header,
+                then come back here.</p>
+            {% endif %}
+          </div>
+        </div>
+      {% else %}
+        <div class="card">
+          <div class="card-body">
+            <!-- TODO: Dash -->
+          </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 {% endblock %}

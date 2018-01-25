@@ -37,6 +37,9 @@ class Item(models.Model):
     available = models.BooleanField(default=True)
     photo = models.ImageField(null=True)
 
+    def __str__(self):
+        return "%s %s" % (self.team, self.get_classification_display())
+
 
 class Trade(models.Model):
     statuses = (
@@ -44,6 +47,24 @@ class Trade(models.Model):
         ('d', 'Denied'),
         ('p', 'Pending')
     )
+    requester = models.ForeignKey(OneshirtUser, null=False, blank=False, on_delete=models.CASCADE,
+                                  related_name="trade_user_requester")
+    recipient = models.ForeignKey(OneshirtUser, null=False, blank=False, on_delete=models.CASCADE,
+                                  related_name="trade_user_recipient")
     give = models.ManyToManyField(Item, related_name="trade_item_given")
     take = models.ManyToManyField(Item, related_name="trade_item_gotten")
     status = models.CharField(max_length=10, choices=statuses, default='p')
+
+    def __str__(self):
+        give_string = ""
+        take_string = ""
+
+        for item in self.give.all():
+            give_string += str(item) + ", "
+
+        for item in self.give.all():
+            give_string += str(item) + ", "
+
+        return "%s offering %s for %s from %s" % (
+            self.requester, give_string[:-3], take_string[:-3], self.recipient
+        )

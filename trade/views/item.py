@@ -8,6 +8,9 @@ def view(request, id):
     ctx = {}
     ctx['item'] = get_object_or_404(Item, id=id)
 
+    if request.user.is_authenticated:
+        ctx['items'] = Item.objects.filter(owner__django_user=request.user)
+
     return render(request, 'trade/item_view.html', ctx)
 
 

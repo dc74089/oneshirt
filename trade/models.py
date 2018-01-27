@@ -18,10 +18,14 @@ class Item(models.Model):
     item_types = (
         ('ts', "T-Shirt"),
         ('hat', "Hat"),
-        ('etc', "Doodad"),
+        ('zip', "Zip-Up Hoodie"),
+        ('pull', "Pullover Hoodie"),
+        ('swt', "Sweater"),
+        ('pnt', "Pants"),
+        ('sk', "Socks"),
+        ('etc', "Doodad/Other"),
     )
 
-    @staticmethod
     def generate_id():  # Generate an ID for an item
         id = randint(100, 1000000)
         while len(Item.objects.filter(id=id)) != 0:
@@ -56,6 +60,14 @@ class Trade(models.Model):
     take = models.ManyToManyField(Item, related_name="trade_item_gotten")
     status = models.CharField(max_length=10, choices=statuses, default='p')
 
+    def give_string(self):
+        give_string = ""
+
+        for item in self.give.all():
+            give_string += str(item) + ", "
+
+        return give_string[:-2]
+
     def __str__(self):
         give_string = ""
         take_string = ""
@@ -63,9 +75,9 @@ class Trade(models.Model):
         for item in self.give.all():
             give_string += str(item) + ", "
 
-        for item in self.give.all():
-            give_string += str(item) + ", "
+        for item in self.take.all():
+            take_string += str(item) + ", "
 
         return "%s offering %s for %s from %s" % (
-            self.requester, give_string[:-3], take_string[:-3], self.recipient
+            self.requester, give_string[:-2], take_string[:-2], self.recipient
         )

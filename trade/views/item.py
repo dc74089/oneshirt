@@ -1,15 +1,22 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
-from ..models import Item, OneshirtUser
+from ..models import Item, OneshirtUser, Trade
 
 
 def view(request, id):
     ctx = {}
-    ctx['item'] = get_object_or_404(Item, id=id)
+    i = get_object_or_404(Item, id=id)
 
     if request.user.is_authenticated:
         ctx['items'] = Item.objects.filter(owner__django_user=request.user)
+
+    if request.user.is_authenticated and request.user == i.owner.django_user:
+        print("Logged In")
+        requests = Trade.objects.filter(take__id=i.id)
+        ctx['requests'] = requests
+
+    ctx['item'] = i
 
     return render(request, 'trade/item_view.html', ctx)
 
@@ -23,8 +30,10 @@ def new(request):
     else:
         data = request.POST
         if not ('photo' in request.FILES and 'team' in data and 'type' in data):
-            assert False
+            # assert False
             return HttpResponse(status=400)
+
+        # TODO: ???
 
         osu = get_object_or_404(OneshirtUser, django_user=request.user)
         i = Item()

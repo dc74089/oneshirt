@@ -24,6 +24,8 @@
               <form action="{% url 'trade:trade_new' %}" method="post">
                 {% csrf_token %}
                 <input type="number" readonly name="take" class="d-none" value="{{ item.id }}">
+                <input type="text" readonly name="item_owner" class="d-none"
+                       value="{{ item.owner.django_user.username }}">
 
                 <div class="form-group">
                   <label for="give">What do you want to offer?</label>
@@ -44,7 +46,18 @@
       {% else %}
         <div class="card">
           <div class="card-body">
-            <!-- TODO: Dash -->
+            {% if requests %}
+              <h5 class="card-title">People Want This!</h5>
+              <div class="list-group list-group-flush">
+                {% for req in requests %}
+                  <a class="list-group-item list-group-item-action" style="padding-left: 0px;">
+                    {{ req.requester }} wants to trade {{ req.give_string }}</a>
+                {% endfor %}
+              </div>
+            {% else %}
+              <h5 class="card-title">No offers yet!</h5>
+              <p class="card-text">Nobody has tried to trade for this item yet. You can offer it in a trade, though!</p>
+            {% endif %}
           </div>
         </div>
       {% endif %}

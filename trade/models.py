@@ -11,7 +11,10 @@ class OneshirtUser(models.Model):
     team = models.IntegerField()
 
     def __str__(self):
-        return "%s from %s" % (self.fname, self.team)
+        if self.team != 0:
+            return "%s from %s" % (self.fname, self.team)
+        else:
+            return "%s (no team)" % self.fname
 
 
 class Item(models.Model):
@@ -42,7 +45,10 @@ class Item(models.Model):
     photo = models.ImageField(null=True)
 
     def __str__(self):
-        return "%s %s" % (self.team, self.get_classification_display())
+        if self.team:
+            return "%s %s" % (self.team, self.get_classification_display())
+        else:
+            return "%s (no team)" % self.get_classification_display()
 
 
 class Trade(models.Model):
@@ -56,28 +62,11 @@ class Trade(models.Model):
                                   related_name="trade_user_requester")
     recipient = models.ForeignKey(OneshirtUser, null=False, blank=False, on_delete=models.CASCADE,
                                   related_name="trade_user_recipient")
-    give = models.ManyToManyField(Item, related_name="trade_item_given")
-    take = models.ManyToManyField(Item, related_name="trade_item_gotten")
+    give = models.ForeignKey(Item, null=False, blank=False, on_delete=models.CASCADE, related_name="trade_item_given")
+    take = models.ForeignKey(Item, null=False, blank=False, on_delete=models.CASCADE, related_name="trade_item_gotten")
     status = models.CharField(max_length=10, choices=statuses, default='p')
 
-    def give_string(self):
-        give_string = ""
-
-        for item in self.give.all():
-            give_string += str(item) + ", "
-
-        return give_string[:-2]
-
     def __str__(self):
-        give_string = ""
-        take_string = ""
-
-        for item in self.give.all():
-            give_string += str(item) + ", "
-
-        for item in self.take.all():
-            take_string += str(item) + ", "
-
         return "%s offering %s for %s from %s" % (
-            self.requester, give_string[:-2], take_string[:-2], self.recipient
+            self.requester, str(self.give), str(self.take), self.recipient
         )

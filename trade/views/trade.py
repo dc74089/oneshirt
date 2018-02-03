@@ -10,9 +10,8 @@ def new_trade(request):
         t = Trade()
         t.requester = get_object_or_404(OneshirtUser, django_user=request.user)
         t.recipient = get_object_or_404(OneshirtUser, django_user__username=data['item_owner'])
-        t.save()
-        t.give.add(get_object_or_404(Item, id=data['give']))
-        t.take.add(get_object_or_404(Item, id=data['take']))
+        t.give = (get_object_or_404(Item, id=data['give']))
+        t.take = (get_object_or_404(Item, id=data['take']))
         t.save()
 
-        return redirect('trade:index')  # TODO: Display a success message
+        return redirect('trade:item_view', id=data['take'])  # TODO: Display a success message

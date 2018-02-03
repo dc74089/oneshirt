@@ -12,9 +12,11 @@ def view(request, id):
         ctx['items'] = Item.objects.filter(owner__django_user=request.user)
 
     if request.user.is_authenticated and request.user == i.owner.django_user:
-        print("Logged In")
         requests = Trade.objects.filter(take__id=i.id)
         ctx['requests'] = requests
+
+    if request.user.is_authenticated and request.user != i.owner.django_user:
+        ctx['trade_active'] = Trade.objects.filter(take__id=i.id, requester__django_user=request.user)
 
     ctx['item'] = i
 

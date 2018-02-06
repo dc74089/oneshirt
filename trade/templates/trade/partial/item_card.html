@@ -1,8 +1,10 @@
 <div class="card">
-  <div class="card-body">
-    <h5 class="text-center">{% if item.year %}{{ item.year }}{% endif %}
-      {{ item.team }} {{ item.get_classification_display }}</h5>
-    <img style="width: 100%; clear:both; margin-top: 20px; margin-bottom: 20px;" src="{{ item.photo.url }}">
-    <p class="text-center">{{ item.description }}<br>Listed by {{ item.owner }}</p>
-  </div>
+  <a class="text-dark" href="{% url 'trade:item_view' id=item.id %}">
+    <div class="card-body">
+      <h5 class="text-center">{% if item.year %}{{ item.year }}{% endif %}
+        {{ item.team }} {{ item.get_classification_display }}</h5>
+      <img style="width: 100%; clear:both; margin-top: 20px; margin-bottom: 20px;" src="{{ item.photo.url }}">
+      <p class="text-center">{{ item.description }}<br>Listed by {{ item.owner }}</p>
+    </div>
+  </a>
 </div>

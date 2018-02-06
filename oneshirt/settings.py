@@ -29,7 +29,7 @@ else:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not is_prod
 
-ALLOWED_HOSTS = ['1shirt.trade', 'www.1shirt.trade']
+ALLOWED_HOSTS = ['1shirt.trade', 'www.1shirt.trade', 'frcshirt.trade', 'www.frcshirt.trade']
 
 if not is_prod:
     ALLOWED_HOSTS.append('dev.1shirt.trade')

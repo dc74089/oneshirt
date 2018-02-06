@@ -20,5 +20,8 @@
         <a href="{% url 'trade:search' %}" class="btn ">Search</a>
       </div>
     </div>
+    {% for card in cards %}
+      {{ card | safe }}
+    {% endfor %}
   </div>
 {% endblock %}

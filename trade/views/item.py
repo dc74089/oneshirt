@@ -41,7 +41,8 @@ def new(request):
         i = Item()
         i.owner = osu
         i.team = data['team']
-        i.year = data.get('year')
+        if data.get('year'):
+            i.year = data.get('year')
         i.classification = data['type']
         i.description = data.get('description')
         i.photo = request.FILES['photo']

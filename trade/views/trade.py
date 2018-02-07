@@ -14,4 +14,4 @@ def new_trade(request):
         t.take = (get_object_or_404(Item, id=data['take']))
         t.save()
 
-        return redirect('trade:item_view', id=data['take'])  # TODO: Display a success message
+        return redirect('trade:item_view', id=data['take'])  # TODO: Display a success message?

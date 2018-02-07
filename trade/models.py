@@ -45,10 +45,16 @@ class Item(models.Model):
     photo = models.ImageField(null=True)
 
     def __str__(self):
-        if self.team:
-            return "%s %s" % (self.team, self.get_classification_display())
+        if self.team > 0:
+            if self.year and self.year > 0:
+                return "%s %s %s" % (self.year, self.team, self.get_classification_display())
+            else:
+                return "%s %s" % (self.team, self.get_classification_display())
         else:
-            return "%s (no team)" % self.get_classification_display()
+            if self.year and self.year > 0:
+                return "%s %s (no team)" % (self.year, self.get_classification_display())
+            else:
+                return "%s (no team)" % self.get_classification_display()
 
 
 class Trade(models.Model):

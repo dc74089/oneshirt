@@ -27,13 +27,15 @@ def register(request):
         return render(request, "trade/auth_register.html")
     else:
         data = request.POST
-        if not ('username' in data and 'password' in data and 'email' in data \
+        if not ('username' in data and 'password' in data and 'email' in data
                 and 'team' in data and 'fname' in data):
-            assert False
             return HttpResponse(status=400)
 
-        u = User.objects.create_user(data['username'], data['email'], data['password'])
-        u.save()
+        try:
+            u = User.objects.create_user(data['username'], data['email'], data['password'])
+            u.save()
+        except ValueError:
+            return HttpResponse(status=400)
 
         osu = OSUser(django_user=u, fname=data['fname'], email=data['email'],
                      team=data['team'])

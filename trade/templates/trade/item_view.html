@@ -7,8 +7,7 @@
         <div class="card-body">
           <img style="width: 100%; clear:both;" src="{{ item.photo.url }}">
           <br><br>
-          <h4 class="text-center">{% if item.year %}{{ item.year }}{% endif %}
-            {{ item.team }} {{ item.get_classification_display }}</h4>
+          <h4 class="text-center">{{ item }}</h4>
           <p class="text-center">{{ item.description }}<br>Listed by {{ item.owner }}</p>
         </div>
       </div>

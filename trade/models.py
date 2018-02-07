@@ -76,3 +76,16 @@ class Trade(models.Model):
         return "%s offering %s for %s from %s" % (
             self.requester, str(self.give), str(self.take), self.recipient
         )
+
+
+class FRCTeam(models.Model):
+    key = models.CharField(max_length=10, primary_key=True)
+    number = models.IntegerField()
+    nickname = models.TextField()
+
+
+class FRCComp(models.Model):
+    compCode = models.CharField(max_length=30)
+    shortName = models.TextField()
+    longName = models.TextField()
+    teams = models.ManyToManyField(FRCTeam)

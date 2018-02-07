@@ -8,7 +8,7 @@ def index(request):
     ctx = {}
     cards = []
 
-    for item in Item.objects.all().order_by('?')[:20]:
+    for item in Item.objects.filter(available=True).order_by('?')[:20]:
         cards.append(render_to_string("trade/partial/item_card.html", {"item": item}))
 
     ctx['cards'] = cards

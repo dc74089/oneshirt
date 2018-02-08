@@ -1,13 +1,11 @@
-<div>
-  <div class="grid-container grid-item">
-    <div class="card">
-      <a class="text-dark" href="{% url 'trade:item_view' id=item.id %}">
-        <div class="card-body">
-          <h5 class="text-center">{{ item }}</h5>
-          <img style="width: 100%; clear:both; margin-top: 20px; margin-bottom: 20px;" src="{{ item.photo.url }}">
-          <p class="text-center">{{ item.description }}<br>Listed by {{ item.owner }}</p>
-        </div>
-      </a>
-    </div>
+<div class="grid-container grid-item">
+  <div class="card">
+    <a class="text-dark" href="{% url 'trade:item_view' id=item.id %}">
+      <div class="card-body">
+        <h5 class="text-center">{{ item }}</h5>
+        <img style="width: 100%; clear:both; margin-top: 20px; margin-bottom: 20px;" src="{{ item.photo.url }}">
+        <p class="text-center">{{ item.description }}<br>Listed by {{ item.owner }}</p>
+      </div>
+    </a>
   </div>
 </div>

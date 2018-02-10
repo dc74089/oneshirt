@@ -1,5 +1,29 @@
 {% extends 'trade/base.html' %}
 
+{% block modals %}
+  {% for req in requests %}
+    <div class="modal" tabindex="-1" role="dialog" id="reqmod-{{ req.id }}" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">View Trade</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
+
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-sm-6 col-md-4">
@@ -38,11 +62,13 @@
                   <button class="btn btn-primary" type="submit">Submit</button>
                 </form>
               {% else %}
-                <p>You already have a trade active! You will get an email from the item owner when they approve or deny
+                <p>You already have a trade active! You will get an email from the item owner when they
+                  approve or deny
                   your request.</p>
               {% endif %}
             {% else %}
-              <p>To set up a trade, you need to be logged in! Log in or register using one of the buttons in the header,
+              <p>To set up a trade, you need to be logged in! Log in or register using one of the buttons
+                in the header,
                 then come back here.</p>
             {% endif %}
           </div>
@@ -54,13 +80,15 @@
               <h5 class="card-title">People Want This!</h5>
               <div class="list-group list-group-flush">
                 {% for req in requests %}
-                  <a class="list-group-item list-group-item-action" style="padding-left: 0px;">
+                  <a class="list-group-item list-group-item-action" data-toggle="modal"
+                     data-target="#reqmod-{{ req.id }}" style="padding-left: 0px;">
                     {{ req.requester }} wants to trade {{ req.give }}</a>
                 {% endfor %}
               </div>
             {% else %}
               <h5 class="card-title">No offers yet!</h5>
-              <p class="card-text">Nobody has tried to trade for this item yet. You can offer it in a trade, though!</p>
+              <p class="card-text">Nobody has tried to trade for this item yet. You can offer it in a
+                trade, though!</p>
             {% endif %}
           </div>
         </div>

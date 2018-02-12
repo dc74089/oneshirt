@@ -47,12 +47,12 @@ class Item(models.Model):
     def __str__(self):
         if self.team > 0:
             if self.year and self.year > 0:
-                return "%s %s %s" % (self.year, self.team, self.get_classification_display())
+                return "%s %s (%s)" % (self.team, self.get_classification_display(), self.year)
             else:
                 return "%s %s" % (self.team, self.get_classification_display())
         else:
             if self.year and self.year > 0:
-                return "%s %s (no team)" % (self.year, self.get_classification_display())
+                return "%s (%s, no team)" % (self.get_classification_display(), self.year)
             else:
                 return "%s (no team)" % self.get_classification_display()
 

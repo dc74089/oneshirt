@@ -71,5 +71,5 @@ def create_sample_items():
     i.team = 254
     i.year = 2016
     i.classification = Item.item_types[0][0]
-    i.description = "A 254 Shirt. Blue. Shiny."
+    i.description = "A 254 Sock. Blue. Shiny."
     i.save()

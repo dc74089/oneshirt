@@ -4,14 +4,33 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+class FRCTeam(models.Model):
+    key = models.CharField(max_length=10, primary_key=True)
+    number = models.IntegerField()
+    nickname = models.TextField()
+
+    def __str__(self):
+        return str(self.number)
+
+
+class FRCComp(models.Model):
+    compCode = models.CharField(max_length=30)
+    shortName = models.TextField()
+    longName = models.TextField()
+    teams = models.ManyToManyField(FRCTeam)
+
+    def __str__(self):
+        return self.longName
+
+
 class OneshirtUser(models.Model):
     django_user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     fname = models.CharField(max_length=60)
     email = models.CharField(max_length=100)
-    team = models.IntegerField()
+    team = models.ForeignKey(FRCTeam, on_delete=models.SET_NULL, null=True, blank=True, unique=False)
 
     def __str__(self):
-        if self.team != 0:
+        if self.team:
             return "%s from %s" % (self.fname, self.team)
         else:
             return "%s (no team)" % self.fname
@@ -76,16 +95,3 @@ class Trade(models.Model):
         return "%s offering %s for %s from %s" % (
             self.requester, str(self.give), str(self.take), self.recipient
         )
-
-
-class FRCTeam(models.Model):
-    key = models.CharField(max_length=10, primary_key=True)
-    number = models.IntegerField()
-    nickname = models.TextField()
-
-
-class FRCComp(models.Model):
-    compCode = models.CharField(max_length=30)
-    shortName = models.TextField()
-    longName = models.TextField()
-    teams = models.ManyToManyField(FRCTeam)

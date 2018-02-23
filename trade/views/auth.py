@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login as do_login, logout as do_logout
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist as DoesNotExistException
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from ..models import OneshirtUser as OSUser
+from ..models import OneshirtUser as OSUser, FRCTeam
 
 
 def login(request):
@@ -37,8 +38,13 @@ def register(request):
         except ValueError:
             return HttpResponse(status=400)
 
+        try:
+            team = FRCTeam.objects.filter(number=data['team']).first()
+        except DoesNotExistException:
+            team = None
+
         osu = OSUser(django_user=u, fname=data['fname'], email=data['email'],
-                     team=data['team'])
+                     team=team)
         osu.save()
 
         # TODO: Logged In message with redirect

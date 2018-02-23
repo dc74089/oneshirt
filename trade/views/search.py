@@ -3,7 +3,7 @@ from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 
-from ..models import Item
+from ..models import Item, OneshirtUser
 
 
 def search(request):
@@ -21,7 +21,24 @@ def do_search(request):
             q = q & Q(team=request.GET['team'])
         if request.GET.get('type') != 'any':
             q = q & Q(type=request.GET['type'])
-        # TODO: Event limiting
+
+        print(request.GET)
+
+        if request.GET.get('my_events') == 'true' and request.user.is_authenticated:
+            osu = OneshirtUser.objects.filter(django_user=request.user).first()
+
+            if osu.team:
+                events = osu.team.frccomp_set.all()
+
+                print(events)
+
+                eq = Q()
+
+                for event in events:
+                    for team in event.teams.all():
+                        eq = eq | Q(owner__team__number=team.number)
+
+                q = q & eq
 
         items = Item.objects.filter(q)
 

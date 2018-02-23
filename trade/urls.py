@@ -21,4 +21,5 @@ urlpatterns = [
 
     # Search
     path(r'search/', search.search, name='search'),
+    path(r'search/do', search.do_search, name='search_do'),
 ]

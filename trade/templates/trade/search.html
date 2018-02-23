@@ -44,8 +44,10 @@
           }
 
           gridMason.masonry('appended', $(".grid-item").not(".grid-sizer"));
-          gridMason.masonry();
 
+          gridMason.imagesLoaded().progress(function () {
+              gridMason.masonry('layout');
+          });
       }
   </script>
 {% endblock %}

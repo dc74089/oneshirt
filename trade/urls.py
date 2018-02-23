@@ -18,6 +18,7 @@ urlpatterns = [
 
     # Trading
     path(r'trade/make', trade.new_trade, name='trade_new'),
+    path(r'trade/accept', trade.accept, name='trade_accept'),
 
     # Search
     path(r'search/', search.search, name='search'),

@@ -1,5 +1,17 @@
 {% extends 'trade/base.html' %}
 
+{% block script %}
+  <script>
+      function acceptTrade(id) {
+          $.post("{% url 'trade:trade_accept' %}", {"id": id}, function (data) {
+              if (data.success) {
+                  $("#reqmod-" + id).modal('hide');
+              }
+          });
+      }
+  </script>
+{% endblock %}
+
 {% block modals %}
   {% for req in requests %}
     <div class="modal" tabindex="-1" role="dialog" id="reqmod-{{ req.id }}" aria-hidden="true">
@@ -12,10 +24,13 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Modal body text goes here.</p>
+            <img style="width: 100%; clear:both;" src="{{ req.give.photo.url }}">
+            <br><br>
+            <h4 class="text-center">{{ req.give }}</h4>
+            <p class="text-center">{{ req.give.description }}<br>Offered by {{ req.give.owner }}</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary" onclick="acceptTrade({{ req.id }});">Accept</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>

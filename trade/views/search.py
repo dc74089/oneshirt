@@ -40,6 +40,8 @@ def do_search(request):
 
                 q = q & eq
 
+        q & Q(available=True)
+
         items = Item.objects.filter(q)
 
         out = {"items": []}

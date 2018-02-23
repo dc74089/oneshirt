@@ -14,3 +14,7 @@ def index(request):
     ctx['cards'] = cards
 
     return render(request, 'trade/index_home.html', ctx)
+
+
+def mine(request):
+    pass  # TODO: Show all of my items

@@ -136,19 +136,16 @@ if is_prod:
     SESSION_COOKIE_HTTPONLY = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
 
-EMAIL_HOST = "smtp.mailgun.org"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
 if is_prod:
     ADMINS = [("Dominic", os.getenv("ADMIN_EMAIL"))]
 
-if is_prod:
-    EMAIL_HOST_USER = "noreply@mail.oneshirt.trade"
-    EMAIL_HOST_PASSWORD = os.getenv("ONESHIRT_SMTP_PASS")
-else:
-    EMAIL_HOST_USER = "mail-dev@mail.oneshirt.trade"
-    EMAIL_HOST_PASSWORD = os.getenv("ONESHIRT_SMTP_DEV_PASS")
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'Webmaster <webmaster@frcshirt.trade>'
 
 
 # Static files (CSS, JavaScript, Images)

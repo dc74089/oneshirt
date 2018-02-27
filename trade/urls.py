@@ -1,11 +1,12 @@
 from django.urls import path
 
-from .views import index, auth, search, item, trade
+from .views import index, auth, search, item, trade, admin
 
 app_name = 'trade'
 urlpatterns = [
     # Index
     path(r'', index.index, name='index'),
+    path(r'mine/', index.mine, name='items_mine'),
 
     # Auth
     path(r'login/', auth.login, name='login'),
@@ -23,4 +24,8 @@ urlpatterns = [
     # Search
     path(r'search/', search.search, name='search'),
     path(r'search/do', search.do_search, name='search_do'),
+
+    # Admin
+    path(r'admin/', admin.home, name='admin_home'),
+    path(r'test/', admin.test),
 ]

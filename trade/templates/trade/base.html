@@ -21,6 +21,8 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"
           integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
+  <meta name="theme-color" content="#2b2b2b">
+
   {% block script %}{% endblock %}
   {% block style %}{% endblock %}
 </head>
@@ -45,16 +47,21 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        {% if not request.user.is_authenticated %}
+      {% if not request.user.is_authenticated %}
+        <li class="nav-item">
           <a class="nav-link" href="#" data-target="#login_modal" data-toggle="modal">Log In</a>
-          </li>
-          <li class="nav-item">
-          <a class="nav-link" href="{% url 'trade:register' %}">Register</a>
-        {% else %}
-          <a class="nav-link" href="{% url 'trade:logout' %}">Log Out</a>
-        {% endif %}
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'trade:register' %}">Register</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'trade:items_mine' %}">My Items</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'trade:logout' %}">Log Out</a>
+        </li>
+      {% endif %}
     </ul>
   </div>
 </nav>

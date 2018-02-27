@@ -12,9 +12,19 @@ def index(request):
         cards.append(render_to_string("trade/partial/item_card.html", {"item": item}))
 
     ctx['cards'] = cards
+    ctx['page'] = "index"
 
     return render(request, 'trade/index_home.html', ctx)
 
 
 def mine(request):
-    pass  # TODO: Show all of my items
+    ctx = {}
+    cards = []
+
+    for item in Item.objects.filter(owner__django_user=request.user):
+        cards.append(render_to_string("trade/partial/item_card.html", {"item": item}))
+
+    ctx['cards'] = cards
+    ctx['page'] = mine
+
+    return render(request, 'trade/index_home.html', ctx)

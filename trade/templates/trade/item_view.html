@@ -30,6 +30,9 @@
             <p class="text-center">{{ req.give.description }}<br>Offered by {{ req.give.owner }}</p>
           </div>
           <div class="modal-footer">
+            <small>If you accept, {{ req.give.owner.fname }} will receive your email address so they can coordinate the
+              trade.
+            </small>
             <button type="button" class="btn btn-primary" onclick="acceptTrade({{ req.id }});">Accept</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>

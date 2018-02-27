@@ -2,6 +2,7 @@ from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 
+from ..email import trade_mail, trade_accepted_mail
 from ..models import Item, Trade, OneshirtUser
 
 
@@ -16,7 +17,9 @@ def new_trade(request):
         t.take = (get_object_or_404(Item, id=data['take']))
         t.save()
 
-        return redirect('trade:item_view', id=data['take'])  # TODO: Display a success message?
+        trade_mail(t)
+
+        return redirect('trade:item_view', id=data['take'])
 
 
 @csrf_exempt
@@ -30,6 +33,8 @@ def accept(request):
         t.give.save()
         t.take.save()
         t.save()
+
+        trade_accepted_mail(t)
 
         return JsonResponse({"success": True})
 

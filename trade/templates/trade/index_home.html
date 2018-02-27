@@ -1,6 +1,10 @@
 {% extends 'trade/base.html' %}
 {% load static %}
 
+{% if page == 'mine' %}
+  {% block title %}My Items - FRCShirt{% endblock %}
+{% endif %}
+
 {% block script %}
   <script src="{% static 'trade/imagesloaded.js' %}"></script>
   <script src="{% static 'trade/masonry.js' %}"></script>
@@ -44,6 +48,7 @@
   <div class="container-fluid">
     <div class="grid mx-auto">
       <div class="grid-sizer grid-item"></div>
+      {% if page == 'index' %}
       <div class="grid-item grid-container grid-title">
         <div class="card">
           <div class="card-body">
@@ -66,6 +71,7 @@
           </div>
         </div>
       </div>
+      {% endif %}
       {% for card in cards %}
         {{ card | safe }}
       {% endfor %}

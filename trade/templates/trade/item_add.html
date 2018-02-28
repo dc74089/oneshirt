@@ -11,7 +11,9 @@
           <form action="{% url 'trade:item_add' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
-              <label for="photo">Select a Picture:</label></br>
+              <label for="photo">Select a Picture:</label>
+              <small>(Required)</small>
+              </br>
               <input type="file" class="file-input" name="photo" id="photo" accept="image/*">
             </div>
             <div class="form-group">

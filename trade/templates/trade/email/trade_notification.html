@@ -1,12 +1,13 @@
 <html>
 <head>
   {% load static %}
-  <link rel="stylesheet" href="https://frcshirt.trade{% static 'trade/bootstrap.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <meta charset="utf-8">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top">
+<nav class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top" style="background-color: #2b2b2b!important;">
   <a class="navbar-brand" href="https://frcshirt.trade{% url 'trade:index' %}">
     <img src="https://frcshirt.trade{% static 'trade/shirt_gradient.svg' %}" height=40>
   </a>

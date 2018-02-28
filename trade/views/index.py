@@ -17,6 +17,10 @@ def index(request):
     return render(request, 'trade/index_home.html', ctx)
 
 
+def about(request):
+    return render(request, 'trade/index_about.html')
+
+
 def mine(request):
     ctx = {}
     cards = []

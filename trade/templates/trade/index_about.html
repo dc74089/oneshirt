@@ -1,0 +1,44 @@
+{% extends "trade/base.html" %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-sm-6 col-md-5 ml-auto">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">About FRCShirt.trade</h4>
+          <p class="card-text">FRCShirt.trade is a site that aims to take some of the hassle out of the long-standing
+            tradition of trading shirts in FRC. It aims to help FRC participants, volunteers, and mentors find items
+            they'd like to trade and coordinate those trades <i>before</i> competitions even start. </p>
+
+          <h4 class="card-title">Site Policies</h4>
+          <p class="card-text">&bull; Money may <i>never</i> be involved in a trade that originates from this site.</p>
+          <p class="card-text">&bull; We will not sell your email or display it publicly, but if you accept someone's
+            trade offer, your email address will be sent to them so that they can discuss the trade with you.</p>
+          <p class="card-text">&bull; Don't post items to trade that you do not actually own. Don't harass other users
+            of the site. Use your powers for good, not evil. To summarize, <b>don't be a {% if request.user.is_staff %}
+              jerk{% else %}jerk{% endif %}</b>, and everything will be fine. </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-5 mr-auto">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Trading on FRCShirt.trade is easy!</h4>
+
+          <h5 class="card-title">1. List Your Items</h5>
+          <p class="card-text">Head over to the <a href="{% url 'trade:item_add' %}">Add Items</a> page, and post a
+            picture and a description of the items you'd be willing to trade this season. </p>
+
+          <h5 class="card-title">2. Browse and Search</h5>
+          <p class="card-text">Use our <a href="{% url 'trade:index' %}">Home</a> and
+            <a href="{% url 'trade:search' %}">Search</a> pages to see what items others have posted.</p>
+
+          <h5 class="card-title">3. Offer a Trade</h5>
+          <p class="card-text">Once you find an item you would like to trade for, head to its page and offer one of your
+            items for a trade. If the item's owner accepts, you'll get their email address so you can work out the
+            details. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

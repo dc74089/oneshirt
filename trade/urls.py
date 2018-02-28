@@ -6,6 +6,7 @@ app_name = 'trade'
 urlpatterns = [
     # Index
     path(r'', index.index, name='index'),
+    path(r'about/', index.about, name='index_about'),
     path(r'mine/', index.mine, name='items_mine'),
 
     # Auth

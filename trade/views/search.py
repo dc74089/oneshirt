@@ -1,14 +1,20 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 
-from ..models import Item, OneshirtUser
+from ..models import Item, OneshirtUser, FRCTeam
 
 
 def search(request):
     ctx = {}
     ctx['item_types'] = Item.item_types
+
+    try:
+        ctx['team'] = OneshirtUser.objects.get(django_user=request.user).team
+    except ObjectDoesNotExist:
+        pass
 
     return render(request, 'trade/search.html', ctx)
 

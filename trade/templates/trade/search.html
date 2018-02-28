@@ -91,14 +91,15 @@
               </select>
             </div>
             <div class="form-group col-sm-12 col-lg-4">
-              {% if not request.user.is_authenticated %}
+              {% if not team or not request.user.is_authenticated %}
                 My Events:<br>
-                If you're logged in, you can see a list of items posted by teams that will be going to events your
-                team is attending.
+                If you're logged in and have set a team, you can see a list of items posted by teams that will be going
+                to events your team is attending.
               {% else %}
                 <label style="width: 100%" for="">My Events:</label>
                 <input type="checkbox" id="my_events">
-                <label style="display: inline;" for="my_events">Only show items listed by teams that will be at my
+                <label style="display: inline;" for="my_events">Only show items listed by teams that will be
+                  at {{ team.nickname }}'s
                   events this year.</label>
               {% endif %}
             </div>

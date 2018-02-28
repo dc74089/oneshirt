@@ -35,7 +35,7 @@ def new(request):
             # assert False
             return HttpResponse(status=400)
 
-        # TODO: ???
+        # TODO: Limit photo size
 
         osu = get_object_or_404(OneshirtUser, django_user=request.user)
         i = Item()

@@ -1,10 +1,6 @@
 {% extends 'trade/base.html' %}
 {% load static %}
 
-{% if page == 'mine' %}
-  {% block title %}My Items - FRCShirt{% endblock %}
-{% endif %}
-
 {% block script %}
   <script src="{% static 'trade/imagesloaded.js' %}"></script>
   <script src="{% static 'trade/masonry.js' %}"></script>

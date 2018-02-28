@@ -1,14 +1,14 @@
 <html>
 <head>
   {% load static %}
-  <link rel="stylesheet" href="http://frcshirt.trade{% static 'trade/bootstrap.css' %}">
+  <link rel="stylesheet" href="https://frcshirt.trade{% static 'trade/bootstrap.css' %}">
   <meta charset="utf-8">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-secondary fixed-top">
-  <a class="navbar-brand" href="http://frcshirt.trade{% url 'trade:index' %}">
-    <img src="http://frcshirt.trade{% static 'trade/shirt_gradient.svg' %}" height=40>
+  <a class="navbar-brand" href="https://frcshirt.trade{% url 'trade:index' %}">
+    <img src="https://frcshirt.trade{% static 'trade/shirt_gradient.svg' %}" height=40>
   </a>
 </nav>
 <main class="container">
@@ -18,7 +18,7 @@
         <h5 class="card-title">Hey {{ trade.take.owner.fname }}, You Have a Trade Offer!</h5>
         <p class="card-text">
           {{ trade.give.owner }} offered you their {{ trade.give }} for your {{ trade.take }}. Log on to <a
-                href="http://frcshirt.trade">FRCShirt.trade</a> to accept or decline!
+                href="https://frcshirt.trade">FRCShirt.trade</a> to accept or decline!
         </p>
       </div>
     </div>

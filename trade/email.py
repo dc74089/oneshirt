@@ -27,4 +27,4 @@ def trade_accepted_mail(trade):
             )
     subject = "Trade offer accepted!"
 
-    send_mail(subject, plain, "webmaster@mail.frcshirt.trade", [trade.give.owner.email])
+    send_mail(subject, plain, "FRCShirt<trading@mail.frcshirt.trade>", [trade.give.owner.email])

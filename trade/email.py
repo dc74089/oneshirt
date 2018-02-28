@@ -6,12 +6,13 @@ from django.template.loader import render_to_string
 def trade_mail(trade):
     ctx = {'trade': trade}
     html = render_to_string('trade/email/trade_notification.html', ctx)
-    plain = "Hey %s, you have a trade offer!\n\n%s offered you their %s for your %s" % (
-        trade.take.owner.fname, trade.give.owner, trade.give, trade.take
-    )
+    plain = "Hey %s, you have a trade offer!\n\n%s offered you their %s for your %s. Go to https://frcshrt.trade/, " \
+            "log in, and select 'My Items' to view or accept the offer." % (
+                trade.take.owner.fname, trade.give.owner, trade.give, trade.take
+            )
     subject = "Trade offer for your %s" % trade.take
 
-    send_mail(subject, plain, "webmaster@mail.frcshirt.trade", [trade.take.owner.email])
+    send_mail(subject, plain, "FRCShirt<trading@mail.frcshirt.trade>", [trade.take.owner.email])
 
 
 def trade_accepted_mail(trade):

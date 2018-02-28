@@ -15,7 +15,7 @@ def search(request):
 
 def do_search(request):
     if request.method == "GET":
-        q = Q()
+        q = Q(verified=True)
 
         if request.GET.get('team'):
             q = q & Q(team=request.GET['team'])

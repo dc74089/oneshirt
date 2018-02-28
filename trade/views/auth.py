@@ -17,8 +17,9 @@ def login(request):
             do_login(request, u)
             return redirect('trade:index')
         else:
-            # TODO: Show error message
-            pass
+            ctx = {"title": "Invalid Username/Password",
+                   "message": "There was a problem logging you in. Please try again."}
+            return render(request, "trade/message.html", ctx)
     else:
         return HttpResponse(status=400)
 

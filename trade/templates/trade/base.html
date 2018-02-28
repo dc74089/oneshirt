@@ -55,6 +55,11 @@
           <a class="nav-link" href="{% url 'trade:register' %}">Register</a>
         </li>
       {% else %}
+        {% if user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'trade:admin_home' %}">Admin Home</a>
+          </li>
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'trade:items_mine' %}">My Items</a>
         </li>

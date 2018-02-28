@@ -27,5 +27,6 @@ urlpatterns = [
 
     # Admin
     path(r'admin/', admin.home, name='admin_home'),
+    path(r'admin/verify/<int:id>/', admin.verify, name='admin_verify'),
     path(r'test/', admin.test),
 ]

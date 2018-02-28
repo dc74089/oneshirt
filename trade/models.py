@@ -62,6 +62,7 @@ class Item(models.Model):
     description = models.TextField()
     available = models.BooleanField(default=True)
     photo = models.ImageField(null=True)
+    verified = models.BooleanField(default=False)
 
     def __str__(self):
         if self.team > 0:

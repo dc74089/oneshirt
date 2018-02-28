@@ -1,0 +1,17 @@
+{% extends "trade/base.html" %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-sm-6 col-md-4 ml-auto mr-auto">
+      <div class="card">
+        <div class="card-body">
+          {% if title %}
+            <h4 class="card-title">{{ title }}</h4>
+          {% endif %}
+
+          <p class="card-text">{{ message | safe }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

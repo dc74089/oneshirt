@@ -21,16 +21,18 @@ def home(request):
 
 
 def verify(request, id):
-    i = get_object_or_404(Item, id=id)
-    i.verified = True
-    i.save()
+    if request.user.is_staff:
+        i = get_object_or_404(Item, id=id)
+        i.verified = True
+        i.save()
 
     return redirect('trade:admin_home')
 
 
 def delete(request, id):
-    i = get_object_or_404(Item, id=id)
-    i.delete()
+    if request.user.is_staff:
+        i = get_object_or_404(Item, id=id)
+        i.delete()
 
     return redirect('trade:admin_home')
 

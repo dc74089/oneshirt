@@ -55,6 +55,7 @@
         {% if request.user.is_staff and not item.verified %}
           <div class="card-footer">
             <a class="btn btn-primary" href="{% url 'trade:admin_verify' id=item.id %}">Verify</a>
+            <a class="btn btn-danger" href="{% url 'trade:admin_delete' id=item.id %}">Delete</a>
           </div>
         {% endif %}
       </div>

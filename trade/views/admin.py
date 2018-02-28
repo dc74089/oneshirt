@@ -28,6 +28,13 @@ def verify(request, id):
     return redirect('trade:admin_home')
 
 
+def delete(request, id):
+    i = get_object_or_404(Item, id=id)
+    i.delete()
+
+    return redirect('trade:admin_home')
+
+
 def test(request):
     ctx = {'trade': Trade.objects.get(id=2)}
     return render(request, 'trade/email/trade_accepted.html', ctx)

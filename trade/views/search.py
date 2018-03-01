@@ -13,7 +13,7 @@ def search(request):
 
     try:
         ctx['team'] = OneshirtUser.objects.get(django_user=request.user).team
-    except ObjectDoesNotExist:
+    except (ObjectDoesNotExist, TypeError):
         pass
 
     return render(request, 'trade/search.html', ctx)

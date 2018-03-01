@@ -5,7 +5,7 @@
       function acceptTrade(id) {
           $.post("{% url 'trade:trade_accept' %}", {"id": id}, function (data) {
               if (data.success) {
-                  $("#reqmod-" + id).modal('hide');
+                  window.reload()
               }
           });
       }
@@ -29,6 +29,7 @@
             <h4 class="text-center">{{ req.give }}</h4>
             <p class="text-center">{{ req.give.description }}<br>Offered by {{ req.give.owner }}</p>
           </div>
+          {% if req.status == "p" %}
           <div class="modal-footer">
             <small>If you accept, {{ req.give.owner.fname }} will receive your email address so they can coordinate the
               trade.
@@ -36,6 +37,12 @@
             <button type="button" class="btn btn-primary" onclick="acceptTrade({{ req.id }});">Accept</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
+          {% else %}
+            <div class="modal-footer">
+              <p class="modal-text">You've already accepted this trade! {{ req.give.owner.fname }} will be emailing you
+                soon. </p>
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>

@@ -48,8 +48,11 @@ def register(request):
                      team=team)
         osu.save()
 
-        # TODO: Logged In message with redirect
-        return redirect('trade:index')
+        ctx = {}
+        ctx['title'] = "Successfully Created"
+        ctx['message'] = "Your account has been successfully created! Log in using the navbar and list your first item!"
+
+        return render(request, "trade/message.html", ctx)
 
 
 def logout(request):

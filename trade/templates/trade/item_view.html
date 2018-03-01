@@ -30,13 +30,14 @@
             <p class="text-center">{{ req.give.description }}<br>Offered by {{ req.give.owner }}</p>
           </div>
           {% if req.status == "p" %}
-          <div class="modal-footer">
-            <small>If you accept, {{ req.give.owner.fname }} will receive your email address so they can coordinate the
-              trade.
-            </small>
-            <button type="button" class="btn btn-primary" onclick="acceptTrade({{ req.id }});">Accept</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+            <div class="modal-footer">
+              <small>If you accept, {{ req.give.owner.fname }} will receive your email address so they can coordinate
+                the
+                trade.
+              </small>
+              <button type="button" class="btn btn-primary" onclick="acceptTrade({{ req.id }});">Accept</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
           {% else %}
             <div class="modal-footer">
               <p class="modal-text">You've already accepted this trade! {{ req.give.owner.fname }} will be emailing you
@@ -78,22 +79,26 @@
               {% if not trade_active %}
                 <h6>Set up a trade with {{ item.owner }}.</h6>
                 <br>
-                <form action="{% url 'trade:trade_new' %}" method="post">
-                  {% csrf_token %}
-                  <input type="number" readonly name="take" class="d-none" value="{{ item.id }}">
-                  <input type="text" readonly name="item_owner" class="d-none"
-                         value="{{ item.owner.django_user.username }}">
+                {% if items %}
+                  <form action="{% url 'trade:trade_new' %}" method="post">
+                    {% csrf_token %}
+                    <input type="number" readonly name="take" class="d-none" value="{{ item.id }}">
+                    <input type="text" readonly name="item_owner" class="d-none"
+                           value="{{ item.owner.django_user.username }}">
 
-                  <div class="form-group">
-                    <label for="give">What do you want to offer?</label>
-                    <select class="custom-select" name="give" style="width: 100%;">
-                      {% for item in items %}
-                        <option value="{{ item.id }}">My {{ item }}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                  <button class="btn btn-primary" type="submit">Submit</button>
-                </form>
+                    <div class="form-group">
+                      <label for="give">What do you want to offer?</label>
+                      <select class="custom-select" name="give" style="width: 100%;">
+                        {% for item in items %}
+                          <option value="{{ item.id }}">My {{ item }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                  </form>
+                {% else %}
+                  <p class="card-text">You need to add an item before you can make an offer!</p>
+                {% endif %}
               {% else %}
                 <p>You already have a trade active! You will get an email from the item owner when they
                   approve or deny

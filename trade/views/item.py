@@ -35,10 +35,10 @@ def new(request):
             # assert False
             return HttpResponse(status=400)
 
-        if request.FILES['photo'].size > 2500000:
+        if request.FILES['photo'].size > 5500000:
             ctx = {}
             ctx['title'] = "File too large"
-            ctx['message'] = "Please make sure that the photo you upload is less than 2mb in size."
+            ctx['message'] = "Please make sure that the photo you upload is less than 5mb in size."
             return render(request, 'trade/message.html')
 
         osu = get_object_or_404(OneshirtUser, django_user=request.user)

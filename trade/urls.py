@@ -17,6 +17,7 @@ urlpatterns = [
     # Items
     path(r'item/<int:id>/', item.view, name='item_view'),
     path(r'item/add/', item.new, name='item_add'),
+    path(r'item/<int:id>/relist/', item.relist, name='item_relist'),
 
     # Trading
     path(r'trade/make', trade.new_trade, name='trade_new'),

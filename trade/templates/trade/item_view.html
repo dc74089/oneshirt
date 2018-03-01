@@ -130,6 +130,19 @@
             {% endif %}
           </div>
         </div>
+        {% if not item.available %}
+          <div class="card" style="margin-top: 10px;">
+            <div class="card-body">
+              <h5 class="card-title">Off the Market</h5>
+              <p class="card-text">Since you've accepted a trade, this item has been <b>taken off the market</b> and <b>won't
+                show up on the homepage or in search results</b>. If the trade that you accepted has fallen through, you
+                can <a href="{% url 'trade:item_relist' id=item.id %}">mark this item as available</a> so that others
+                can see this item again and request to
+                trade for it. Note that when you re-list an item, any of the people that you have an active trade with
+                <b>will be emailed that your trade has been cancelled</b>.</p>
+            </div>
+          </div>
+        {% endif %}
       {% endif %}
     </div>
   </div>

@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
+from .. import email
 from ..models import Item, OneshirtUser, Trade
 
 
@@ -53,3 +54,27 @@ def new(request):
         i.save()
 
         return redirect('trade:item_view', id=i.id)
+
+
+def relist(request, id):
+    i = get_object_or_404(Item, id=id)
+
+    if not (i.owner.django_user == request.user or request.user.is_staff):
+        return HttpResponse(status=401)
+
+    i.available = True
+    i.save()
+
+    for t in Trade.objects.filter(take=i, status='a'):
+        t.status = 'c'
+        t.save()
+
+        email.trade_cancelled_by_taker(t)
+
+    for t in Trade.objects.filter(give=i, status='a'):
+        t.status = 'c'
+        t.save()
+
+        email.trade_cancelled_by_giver(t)
+
+    return redirect('trade:item_view', id=id)

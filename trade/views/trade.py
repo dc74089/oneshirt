@@ -19,8 +19,8 @@ def new_trade(request):
 
         try:
             trade_mail(t)
-        except Exception:
-            pass
+        except Exception as e:
+            print(e)
 
         return redirect('trade:item_view', id=data['take'])
 
@@ -39,8 +39,8 @@ def accept(request):
 
         try:
             trade_accepted_mail(t)
-        except Exception:
-            pass
+        except Exception as e:
+            print(e)
 
         return JsonResponse({"success": True})
 

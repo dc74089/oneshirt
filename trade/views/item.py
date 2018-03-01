@@ -69,12 +69,18 @@ def relist(request, id):
         t.status = 'c'
         t.save()
 
-        email.trade_cancelled_by_taker(t)
+        try:
+            email.trade_cancelled_by_taker(t)
+        except Exception:
+            pass
 
     for t in Trade.objects.filter(give=i, status='a'):
         t.status = 'c'
         t.save()
 
-        email.trade_cancelled_by_giver(t)
+        try:
+            email.trade_cancelled_by_giver(t)
+        except Exception:
+            pass
 
     return redirect('trade:item_view', id=id)

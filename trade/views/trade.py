@@ -17,7 +17,10 @@ def new_trade(request):
         t.take = (get_object_or_404(Item, id=data['take']))
         t.save()
 
-        trade_mail(t)
+        try:
+            trade_mail(t)
+        except Exception:
+            pass
 
         return redirect('trade:item_view', id=data['take'])
 
@@ -34,7 +37,10 @@ def accept(request):
         t.take.save()
         t.save()
 
-        trade_accepted_mail(t)
+        try:
+            trade_accepted_mail(t)
+        except Exception:
+            pass
 
         return JsonResponse({"success": True})
 

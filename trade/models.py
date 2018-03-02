@@ -1,3 +1,5 @@
+import binascii
+import os
 from random import randint
 
 from django.contrib.auth.models import User
@@ -34,6 +36,24 @@ class OneshirtUser(models.Model):
             return "%s from %s" % (self.fname, self.team)
         else:
             return "%s (no team)" % self.fname
+
+
+class PasswordResetRequest(models.Model):
+    def gen_key():
+        k = binascii.b2a_hex(os.urandom(15))
+        while len(PasswordResetRequest.objects.filter(key=k)) != 0:
+            k = binascii.b2a_hex(os.urandom(15))
+        return k
+
+    user = models.ForeignKey(OneshirtUser, on_delete=models.CASCADE)
+    key = models.CharField(primary_key=True, max_length=30, default=gen_key)
+    valid = models.BooleanField(default=True)
+
+    def __str__(self):
+        if self.valid:
+            return "Valid reset for %s" % self.user
+        else:
+            return "Invalid reset for %s" % self.user
 
 
 class Item(models.Model):

@@ -11,6 +11,15 @@ def feedback_mail(message, user):
     send_mail(subject, plain, "FRCShirt<trading@mail.frcshirt.trade>", [os.getenv("ADMIN_EMAIL")])
 
 
+def pass_reset_mail(user, key):
+    plain = "Hey %s!\n\nTo reset your password, click on the following link: " \
+            "https://frcshirt.trade/login/forgot/?key=%s" % (
+                user.fname, key
+            )
+    subject = "FRCShirt: Reset Password"
+    send_mail(subject, plain, "FRCShirt<trading@mail.frcshirt.trade>", [user.email])
+
+
 # TODO: Fix html message not displaying in gmail
 def trade_mail(trade):
     ctx = {'trade': trade}

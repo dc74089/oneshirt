@@ -13,6 +13,8 @@ urlpatterns = [
     path(r'login/', auth.login, name='login'),
     path(r'logout/', auth.logout, name='logout'),
     path(r'register/', auth.register, name='register'),
+    path(r'login/forgot/', auth.forgot, name='auth_forgot'),
+    path(r'login/reset/', auth.reset, name='auth_reset'),
 
     # Items
     path(r'item/<int:id>/', item.view, name='item_view'),

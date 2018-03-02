@@ -33,6 +33,12 @@ def register(request):
                 and 'team' in data and 'fname' in data):
             return HttpResponse(status=400)
 
+        if len(User.objects.filter(username=data['username'])) > 0:
+            ctx = {}
+            ctx['title'] = "Username Taken"
+            ctx['message'] = "It looks like we already have a user with that username. Please select another."
+            return render(request, 'trade/message.html', ctx)
+
         try:
             u = User.objects.create_user(data['username'], data['email'], data['password'])
             u.save()

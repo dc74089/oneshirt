@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 def feedback_mail(message, user):
     plain = message + "\n\nPosted by %s, %s" % (user.fname, user.email)
     subject = "FRCShirt Feedback"
-    send_mail(subject, plain, "FRCShirt<trading@mail.frcshirt.trade>"[os.getenv("ADMIN_EMAIL")])
+    send_mail(subject, plain, "FRCShirt<trading@mail.frcshirt.trade>", [os.getenv("ADMIN_EMAIL")])
 
 
 # TODO: Fix html message not displaying in gmail

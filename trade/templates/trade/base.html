@@ -104,6 +104,33 @@
   </div>
 </div>
 
+
+<div class="modal fade" id="feedback_modal" tabindex="-1" role="document" aria-hidden="true"
+     aria-labelledby="feedback_label">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="feedback_label">Send Feedback</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{% url 'trade:admin_feedback' %}" method="post">
+        {% csrf_token %}
+        <div class="modal-body">
+          <div class="form-group">
+            <textarea class="form-control" name="feedback" id="feedback" placeholder="Feedback"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Send</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 {% block modals %}
 {% endblock %}
 
@@ -111,12 +138,14 @@
   {% block content %}
     Hello World! Override me!
   {% endblock %}
-
   <hr style="margin-top: 15px;">
   <div class="footer container-fluid text-center" style="margin-bottom: 15px;">
+    <br>
     <small>&copy;Dominic Canora<br>
       Made with &hearts;, available on <a href="https://github.com/dc74089/oneshirt">GitHub</a>.
     </small>
+    <br>
+    <small><a href="#" data-target="#feedback_modal" data-toggle="modal">Send Feedback</a></small>
   </div>
 </main>
 

@@ -31,5 +31,6 @@ urlpatterns = [
     path(r'admin/', admin.home, name='admin_home'),
     path(r'admin/verify/<int:id>/', admin.verify, name='admin_verify'),
     path(r'admin/delete/<int:id>/', admin.delete, name='admin_delete'),
+    path(r'feedback/', admin.feedback, name='admin_feedback'),
     path(r'test/', admin.test),
 ]

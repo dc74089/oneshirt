@@ -44,7 +44,7 @@ def feedback(request):
 
     try:
         u = get_object_or_404(OneshirtUser, django_user=request.user)
-        email.feedback_mail(request.POST.get('message'), u)
+        email.feedback_mail(request.POST.get('feedback'), u)
     except Exception as e:
         print(e)
         # return render(request, 'trade/message.html', {'message': e})

@@ -4,9 +4,7 @@
   <script>
       function acceptTrade(id) {
           $.post("{% url 'trade:trade_accept' %}", {"id": id}, function (data) {
-              if (data.success) {
-                  window.reload()
-              }
+              location.reload(true);
           });
       }
   </script>

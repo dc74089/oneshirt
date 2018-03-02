@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 
 from .. import email
-from ..models import Trade, Item
+from ..models import Trade, Item, OneshirtUser
 
 
 def home(request):
@@ -43,9 +43,11 @@ def feedback(request):
         return HttpResponse(status=400)
 
     try:
-        email.feedback_mail(request.POST.get('message'), request.user)
+        u = get_object_or_404(OneshirtUser, django_user=request.user)
+        email.feedback_mail(request.POST.get('message'), u)
     except Exception as e:
         print(e)
+        return render(request, 'trade/message.html', {'message': e})
 
     return redirect('trade:index')
 

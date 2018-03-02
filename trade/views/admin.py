@@ -47,7 +47,7 @@ def feedback(request):
         email.feedback_mail(request.POST.get('message'), u)
     except Exception as e:
         print(e)
-        return render(request, 'trade/message.html', {'message': e})
+        # return render(request, 'trade/message.html', {'message': e})
 
     return redirect('trade:index')
 

@@ -2,6 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 
+from .. import email
 from ..models import Trade, Item
 
 
@@ -35,6 +36,18 @@ def delete(request, id):
         i.delete()
 
     return redirect('trade:admin_home')
+
+
+def feedback(request):
+    if not request.method == 'POST':
+        return HttpResponse(status=400)
+
+    try:
+        email.feedback_mail(request.POST.get('message'), request.user)
+    except Exception as e:
+        print(e)
+
+    return redirect('index')
 
 
 def test(request):

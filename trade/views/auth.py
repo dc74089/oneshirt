@@ -69,15 +69,32 @@ def forgot(request):
         data = request.POST
 
         if 'email' in data:
-            osu = get_object_or_404(OSUser, email=data['email'])
+            osu = OSUser.objects.filter(email=data['email']).first()
+
+            if not osu:
+                ctx = {}
+                ctx['title'] = "Uh-Oh"
+                ctx['message'] = "We can't find an account with that email address. Either register, or try again."
+                return render(request, 'trade/message.html', ctx)
+
             prr = PasswordResetRequest()
             prr.user = osu
             prr.save()
 
             try:
                 email.pass_reset_mail(prr.user, prr.key)
+                ctx = {}
+                ctx['title'] = "Email Sent"
+                ctx['message'] = "A password reset email has been sent. Check your email and click the link included."
+                return render(request, 'trade/message.html', ctx)
             except Exception as e:
                 print(e)
+                ctx = {}
+                ctx['title'] = "Uh-Oh"
+                ctx['message'] = "We are having some trouble sending emails right now. Unfortunately, this happens " \
+                                 "every now and again. Please try resetting your password again in a few hours, " \
+                                 "and hopefully by then we will be back up and running again. "
+                return render(request, 'trade/message.html', ctx)
         else:
             return HttpResponse(status=400)
 

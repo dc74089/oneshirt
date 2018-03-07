@@ -57,6 +57,10 @@
           <br><br>
           <h4 class="text-center">{{ item }}</h4>
           <p class="text-center">{{ item.description }}<br>Listed by {{ item.owner }}</p>
+          {% if events %}
+            <p style="font-size: 0.8em;" class="text-center">{{ item.owner.fname }}'s team will be at {{ events }} this
+              season.</p>
+          {% endif %}
         </div>
         {% if request.user.is_staff %}
           <div class="card-footer">

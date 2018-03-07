@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
-from .. import email
-from ..models import Item, OneshirtUser, Trade
+from .. import email, utils
+from ..models import Item, OneshirtUser, Trade, FRCComp
 
 
 def view(request, id):
@@ -18,6 +18,9 @@ def view(request, id):
 
     if request.user.is_authenticated and request.user != i.owner.django_user:
         ctx['trade_active'] = Trade.objects.filter(take__id=i.id, requester__django_user=request.user)
+
+    if i.owner.team:
+        ctx['events'] = utils.list_with_and(list(FRCComp.objects.filter(teams=i.owner.team)))
 
     ctx['item'] = i
 

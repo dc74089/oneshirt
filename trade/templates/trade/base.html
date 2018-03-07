@@ -159,7 +159,9 @@
       Made with &hearts;, available on <a href="https://github.com/dc74089/oneshirt">GitHub</a>.
     </small>
     <br>
-    <small><a href="#" data-target="#feedback_modal" data-toggle="modal">Send Feedback</a></small>
+    {% if request.user.is_authenticated %}
+      <small><a href="#" data-target="#feedback_modal" data-toggle="modal">Send Feedback</a></small>
+    {% endif %}
   </div>
 </main>
 

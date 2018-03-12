@@ -60,7 +60,7 @@ def update_tba_teams():
 
 def rotate_all():
     for item in Item.objects.all():
-        if not settings.is_prod:
+        if not os.getenv("ONESHIRT_PROD"):
             return
 
         fullpath = '/home/oneshirt' + item.photo.url

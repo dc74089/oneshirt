@@ -2,10 +2,7 @@ import os
 
 import tbapy
 
-from django.conf import settings
-
 from .models import Item, OneshirtUser, FRCTeam, FRCComp
-from . import utils
 
 
 def init_tba():
@@ -56,15 +53,6 @@ def update_tba_teams():
                 e.save()
             except:
                 print("Error adding %s to %s" % (team.nickname, e.short_name))
-
-
-def rotate_all():
-    for item in Item.objects.all():
-        if not os.getenv("ONESHIRT_PROD"):
-            return
-
-        fullpath = '/home/oneshirt' + item.photo.url
-        utils.rotate_image(fullpath)
 
 
 def create_sample_items():

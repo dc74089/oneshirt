@@ -5,7 +5,7 @@
     <a class="text-dark" href="{% url 'trade:item_view' id=item.id %}">
       <div class="card-body">
         <h5 class="text-center">{{ item }}</h5>
-        {% thumbnail item.photo "300" as im %}
+        {% thumbnail item.photo "300" upscale=False as im %}
           <img style="width: 100%; clear:both; margin-top: 20px; margin-bottom: 20px;" src="{{ im.url }}">
         {% endthumbnail %}
         <p class="text-center">{{ item.description }}<br>Listed by {{ item.owner }}</p>

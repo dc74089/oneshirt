@@ -1,4 +1,5 @@
 {% extends 'trade/base.html' %}
+{% load thumbnail %}
 
 {% block script %}
   <script>
@@ -22,7 +23,9 @@
             </button>
           </div>
           <div class="modal-body">
-            <img style="width: 100%; clear:both;" src="{{ req.give.photo.url }}">
+            {% thumbnail req.give.photo "1000" as thumb %}
+              <img style="width: 100%; clear:both;" src="{{ thumb.url }}">
+            {% endthumbnail %}
             <br><br>
             <h4 class="text-center">{{ req.give }}</h4>
             <p class="text-center">{{ req.give.description }}<br>Offered by {{ req.give.owner }}</p>
@@ -53,7 +56,9 @@
     <div class="col-sm-6 col-md-4">
       <div class="card">
         <div class="card-body">
-          <img style="width: 100%; clear:both;" src="{{ item.photo.url }}">
+          {% thumbnail item.photo "1000" upscale=False as thumb %}
+            <img style="width: 100%; clear:both;" src="{{ thumb.url }}">
+          {% endthumbnail %}
           <br><br>
           <h4 class="text-center">{{ item }}</h4>
           <p class="text-center">{{ item.description }}<br>Listed by {{ item.owner }}</p>

@@ -3,6 +3,7 @@ import os
 import tbapy
 
 from .models import Item, OneshirtUser, FRCTeam, FRCComp
+from . import utils
 
 
 def init_tba():
@@ -53,6 +54,13 @@ def update_tba_teams():
                 e.save()
             except:
                 print("Error adding %s to %s" % (team.nickname, e.short_name))
+
+
+def rotate_all():
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    for item in Item.objects.all():
+        fullpath = BASE_DIR + item.photo.url
+        utils.rotate_image(fullpath)
 
 
 def create_sample_items():

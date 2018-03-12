@@ -153,12 +153,11 @@ DEFAULT_FROM_EMAIL = 'Webmaster <webmaster@frcshirt.trade>'
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/oneshirt/static/'
+MEDIA_URL = '/media/'
 if is_prod:
-    MEDIA_URL = '/media/'
+    STATIC_ROOT = '/home/oneshirt/static/'
     MEDIA_ROOT = '/home/oneshirt/media/'
     FILE_UPLOAD_PERMISSIONS = 0o644
 else:
-    ENV_PATH = os.path.abspath(os.path.dirname(__file__))
-    MEDIA_URL = '/media/'
+    ENV_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     MEDIA_ROOT = os.path.join(ENV_PATH, 'media/')

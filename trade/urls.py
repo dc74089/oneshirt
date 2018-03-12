@@ -1,5 +1,6 @@
 from django.urls import path
 
+from . import startup
 from .views import index, auth, search, item, trade, admin
 
 app_name = 'trade'

@@ -2,6 +2,8 @@ import os
 
 import tbapy
 
+from django.conf import settings
+
 from .models import Item, OneshirtUser, FRCTeam, FRCComp
 from . import utils
 
@@ -57,9 +59,11 @@ def update_tba_teams():
 
 
 def rotate_all():
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     for item in Item.objects.all():
-        fullpath = BASE_DIR + item.photo.url
+        if not settings.is_prod:
+            return
+
+        fullpath = '/home/oneshirt' + item.photo.url
         utils.rotate_image(fullpath)
 
 

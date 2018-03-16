@@ -5,3 +5,4 @@ run
 oneshirt/media
 .idea/
 env/
+**/media/**

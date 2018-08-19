@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'oneshirt',
         'USER': 'oneshirt',
-        'PASSWORD': os.getenv("ONESHIRT_DB_PASS"),
+        'PASSWORD': os.getenv("ONESHIRT_DB_PASS", "oinkoinkboom"),
         'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
         'PORT': '3306',
         'OPTIONS': {'init_command': 'SET default_storage_engine=MyISAM', },

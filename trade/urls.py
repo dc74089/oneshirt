@@ -1,7 +1,7 @@
 from django.urls import path
 
 from . import startup
-from .views import index, auth, search, item, trade, admin
+from .views import index, auth, search, item, trade, admin, api
 
 app_name = 'trade'
 urlpatterns = [
@@ -36,4 +36,8 @@ urlpatterns = [
     path(r'admin/delete/<int:id>/', admin.delete, name='admin_delete'),
     path(r'feedback/', admin.feedback, name='admin_feedback'),
     path(r'test/', admin.test),
+
+    # API
+    path(r'api/all', api.all_items, name='api_all'),
+    path(r'api/search', api.search, name='api_search'),
 ]

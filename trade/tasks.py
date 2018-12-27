@@ -21,8 +21,11 @@ def update_tba():
     teams = {}
     team_objects = {}
 
+    i = 0
+
     while True:
         teams = tba.teams(i, year)
+        i++
 
         if len(teams) == 0:
             break

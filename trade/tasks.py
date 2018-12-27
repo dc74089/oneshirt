@@ -9,13 +9,25 @@ def init_tba():
     tba = tbapy.TBA(os.getenv("TBA_KEY"))
 
 
-def update_tba_teams():
+def flush_for_new_season():
+    FRCComp.objects.all().delete()
+    update_tba()
+
+
+def update_tba():
     tba = tbapy.TBA(os.getenv("TBA_KEY"))
+    year = tba.status().current_season
+
     teams = {}
     team_objects = {}
 
-    for i in range(16):
-        for team in tba.teams(i, 2018):
+    while True:
+        teams = tba.teams(i, year)
+
+        if len(teams) == 0:
+            break
+
+        for team in tba.teams(i, year):
             print("Team %d: %s" % (team.team_number, team.nickname))
 
             q = FRCTeam.objects.filter(key=team.key)
@@ -33,7 +45,7 @@ def update_tba_teams():
             teams[team.key] = team
             team_objects[team.key] = t
 
-    for event in tba.events(2018):
+    for event in tba.events(year):
         print(event.name)
         q = FRCComp.objects.filter(compCode=event.key)
         if len(q) > 0:
@@ -56,20 +68,22 @@ def update_tba_teams():
 
 
 def create_sample_items():
-    i = Item()
-    i.id = 233
-    i.owner = OneshirtUser.objects.get(django_user__username='dc74089')
-    i.team = 233
-    i.year = 2017
-    i.classification = Item.item_types[0][0]
-    i.description = "A pink Pink shirt."
-    i.save()
+    if OneshirtUser.objects.filter(django_user__username='dc74089').count() != 0:
+        i = Item()
+        i.id = 233
+        i.owner = OneshirtUser.objects.get(django_user__username='dc74089')
+        i.team = 233
+        i.year = 2017
+        i.classification = Item.item_types[0][0]
+        i.description = "A pink Pink shirt."
+        i.save()
 
-    i = Item()
-    i.id = 254
-    i.owner = OneshirtUser.objects.get(django_user__username='test')
-    i.team = 254
-    i.year = 2016
-    i.classification = Item.item_types[0][0]
-    i.description = "A 254 Sock. Blue. Shiny."
-    i.save()
+    if OneshirtUser.objects.filter(django_user__username='test').count() != 0:
+        i = Item()
+        i.id = 254
+        i.owner = OneshirtUser.objects.get(django_user__username='test')
+        i.team = 254
+        i.year = 2016
+        i.classification = Item.item_types[0][0]
+        i.description = "A 254 Sock. Blue. Shiny."
+        i.save()

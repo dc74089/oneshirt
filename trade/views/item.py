@@ -13,7 +13,7 @@ def view(request, id):
         ctx['items'] = Item.objects.filter(owner__django_user=request.user)
 
     if request.user.is_authenticated and request.user == i.owner.django_user:
-        requests = Trade.objects.filter(take__id=i.id)
+        requests = Trade.objects.filter(take__id=i.id).exclude(status="d")
         ctx['requests'] = requests
 
     if request.user.is_authenticated and request.user != i.owner.django_user:

@@ -8,6 +8,12 @@
               location.reload(true);
           });
       }
+
+      function declineTrade(id) {
+          $.post("{% url 'trade:trade_decline' %}", {"id": id}, function (data) {
+              location.reload(true);
+          });
+      }
   </script>
 {% endblock %}
 
@@ -33,11 +39,15 @@
           {% if req.status == "p" %}
             <div class="modal-footer">
               <small>If you accept, {{ req.give.owner.fname }} will receive your email address so they can coordinate
-                the
-                trade.
+                the trade. If you decline, it is <b>irreversible</b> and you will not be able to later accept.
               </small>
               <button type="button" class="btn btn-primary" onclick="acceptTrade({{ req.id }});">Accept</button>
+              <button type="button" class="btn btn-danger" onclick="declineTrade({{ req.id }});">Decline</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          {% elif req.status == "d" %}
+            <div class="modal-footer">
+              <p class="modal-text">You've declined this offer. </p>
             </div>
           {% else %}
             <div class="modal-footer">

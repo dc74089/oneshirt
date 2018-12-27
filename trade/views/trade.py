@@ -45,3 +45,14 @@ def accept(request):
         return JsonResponse({"success": True})
 
     return JsonResponse({}, status=400)
+
+@csrf_exempt
+def decline(request):
+    if request.method == 'POST':
+        t = get_object_or_404(Trade, id=request.POST['id'])
+        t.status = 'd'
+        t.save()
+
+        return JsonResponse({"success": True})
+
+    return JsonResponse({}, status=400)

@@ -24,13 +24,14 @@ def update_tba():
     i = 0
 
     while True:
-        teams = tba.teams(i, year)
+        api_teams = tba.teams(i, year)
         i += 1
 
-        if len(teams) == 0:
+        if len(api_teams) == 0:
+            print("Finished with teams")
             break
 
-        for team in tba.teams(i, year):
+        for team in api_teams:
             print("Team %d: %s" % (team.team_number, team.nickname))
 
             q = FRCTeam.objects.filter(key=team.key)

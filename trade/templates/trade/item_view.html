@@ -67,14 +67,14 @@
               season.</p>
           {% endif %}
         </div>
-        {% if request.user.is_staff %}
           <div class="card-footer">
-            {% if not item.verified %}
+            {% if request.user.is_staff and not item.verified %}
               <a class="btn btn-primary" href="{% url 'trade:admin_verify' id=item.id %}">Verify</a>
             {% endif %}
-            <a class="btn btn-danger" href="{% url 'trade:admin_delete' id=item.id %}">Delete</a>
+            {% if request.user.is_staff or request.user == item.owner.django_user %}
+              <a class="btn btn-danger" href="{% url 'trade:admin_delete' id=item.id %}">Delete</a>
+            {% endif %}
           </div>
-        {% endif %}
       </div>
     </div>
     <div class="col-sm-12 col-md-4">

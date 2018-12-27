@@ -30,9 +30,10 @@ def verify(request, id):
     return redirect('trade:admin_home')
 
 
-def delete(request, id):
-    if request.user.is_staff:
-        i = get_object_or_404(Item, id=id)
+def delete(request, id):  # This function is accessable to users. TODO: Refactor into item.py
+    i = get_object_or_404(Item, id=id)
+
+    if request.user.is_staff or request.user == i.owner.django_user:
         i.delete()
 
     return redirect('trade:admin_home')

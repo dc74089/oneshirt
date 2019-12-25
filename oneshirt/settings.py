@@ -155,8 +155,8 @@ DEFAULT_FROM_EMAIL = 'Webmaster <webmaster@frcshirt.trade>'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 if is_prod:
-    STATIC_ROOT = '/home/oneshirt/static/'
-    MEDIA_ROOT = '/home/oneshirt/media/'
+    STATIC_ROOT = '/opt/oneshirt/static/'
+    MEDIA_ROOT = '/opt/oneshirt/media/'
     FILE_UPLOAD_PERMISSIONS = 0o644
 else:
     ENV_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
